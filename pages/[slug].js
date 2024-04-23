@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { auth, db } from "../utils/firebase";
 import { toast } from "react-toastify";
+import Image from "next/image";
 import {
   arrayUnion,
   doc,
@@ -52,6 +53,7 @@ export default function Details() {
       const docRef = doc(db, "posts", routeData.id);
       const docSnap = await getDoc(docRef);
       setAllMessages(docSnap.data().comments);
+      // on first load, allMessages is an empty array so need to check with allMessages?.map before using it in the div
       console.log(allMessages);
     } catch (e) {
       console.log(e);
@@ -84,15 +86,24 @@ export default function Details() {
         </div>
         <div className="py-6">
           <h2 className="font-bold text-black">Comments</h2>
-          {allMessages.map((message) => (
-            <div className="bg-white p-4 my-4 border-2">
+          {allMessages?.map((message) => (
+            <div
+              className="bg-white p-4 my-4 border-2"
+              key={message.time.seconds}
+            >
               <div className="text-sm flex items-center gap-2 mb-4">
                 <img
                   className="w-10 rounded-full"
                   src={message.avatar}
                   alt="user avatar"
                 />
-                {/* <Image className="w-10 rounded-full" src={message.avatar} width={500} height={500} alt="user avatar" /> */}
+                {/* <Image
+                  className="w-10 rounded-full"
+                  src={message.avatar}
+                  width={500}
+                  height={500}
+                  alt="user avatar"
+                /> */}
                 <p className="text-black">{message.message}</p>
               </div>
             </div>
