@@ -8,7 +8,7 @@ import Message from "@/components/message";
 import { BsTrash2Fill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 
-export default function dashboard() {
+export default function Dashboard() {
   const [user, loading] = useAuthState(auth);
   const [posts, setPosts] = useState([])
   const route = useRouter();

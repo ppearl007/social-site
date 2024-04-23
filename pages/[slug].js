@@ -46,11 +46,16 @@ export default function Details() {
 
   // use await getdoc to get it once - needs refresh
   // use snapshot to get messages realtime
+
   const getComments = async () => {
-    const docRef = doc(db, "posts", routeData.id);
-    const docSnap = await getDoc(docRef);
-    setAllMessages(docSnap.data().comments);
-    console.log(allMessages);
+    try {
+      const docRef = doc(db, "posts", routeData.id);
+      const docSnap = await getDoc(docRef);
+      setAllMessages(docSnap.data().comments);
+      console.log(allMessages);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -68,7 +73,7 @@ export default function Details() {
             type="text"
             value={message}
             placeholder="Send a message"
-            className="bg-gray-800 w-full p-2 text-sm"
+            className="bg-gray-800 w-full p-2 text-sm text-white"
           />
           <button
             onClick={submitMessage}
@@ -82,7 +87,12 @@ export default function Details() {
           {allMessages.map((message) => (
             <div className="bg-white p-4 my-4 border-2">
               <div className="text-sm flex items-center gap-2 mb-4">
-                <img className="w-10 rounded-full" src={message.avatar} alt="" />
+                <img
+                  className="w-10 rounded-full"
+                  src={message.avatar}
+                  alt="user avatar"
+                />
+                {/* <Image className="w-10 rounded-full" src={message.avatar} width={500} height={500} alt="user avatar" /> */}
                 <p className="text-black">{message.message}</p>
               </div>
             </div>

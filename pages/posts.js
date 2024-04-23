@@ -1,7 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "@/utils/firebase";
 
-export default function posts() {
+export default function Posts() {
 
   const postContent = async () => {
     const querySnapshot = await getDocs(collection(db, "posts"));

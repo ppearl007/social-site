@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Message({ children, avatar, userName, description }) {
   return (
     <div className="bg-white p-8 flex items-center gap-2">

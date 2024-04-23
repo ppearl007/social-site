@@ -86,7 +86,7 @@ export default function Post() {
         <div className="py-2">
           <h3 className="text-lg font-medium py-2">Description</h3>
           <textarea
-            className=" h-48 w-full rounded-lg p-2 text-sm bg-gray-600"
+            className="text-white h-48 w-full rounded-lg p-2 text-sm bg-gray-600"
             value={post.description}
             onChange={(e) => setPost({ ...post, description: e.target.value })}
           ></textarea>
