@@ -92,18 +92,13 @@ export default function Details() {
               key={message.time.seconds}
             >
               <div className="text-sm flex items-center gap-2 mb-4">
-                <img
-                  className="w-10 rounded-full"
-                  src={message.avatar}
-                  alt="user avatar"
-                />
-                {/* <Image
+                <Image
                   className="w-10 rounded-full"
                   src={message.avatar}
                   width={500}
                   height={500}
                   alt="user avatar"
-                /> */}
+                />
                 <p className="text-black">{message.message}</p>
               </div>
             </div>
